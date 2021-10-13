@@ -11,6 +11,9 @@ const secret = document.getElementById("secret");
 const period = document.getElementById("period");
 const messageBox = document.getElementById("message-box");
 const logOutBtn = document.getElementById('log-out');
+const exportBtn = document.getElementById('export');
+const importBtn = document.getElementById('import');
+const importFile = document.getElementById('importFile');
 let keys = localStorage.getItem("keys")
   ? JSON.parse(localStorage.getItem("keys"))
   : [];
@@ -31,6 +34,9 @@ function main() {
     closeBtn.addEventListener("click", toggleModal);
     submitBtn.addEventListener("click", handleSubmit);
     logOutBtn.addEventListener('click', logOut);
+    exportBtn.addEventListener('click', exportData);
+    importBtn.addEventListener('click', importData);
+    importFile.addEventListener('change', importFileSelect);
     setInterval(countdown, 1000);
     setInterval(removeMessage, 3000);
   }
@@ -42,7 +48,7 @@ function authenticator(e) {
 }
 function processAuth(e) {
   password = document.getElementById("password").value;
-  if(password.length < 10){
+  if(password.length < 6){
     sendMessage("Password must be at least 10 characters");
     return;
   }
@@ -280,4 +286,40 @@ function toggleModal() {
   addModal.classList.toggle("hidden");
   container.classList.toggle("blur");
   clearForm();
+}
+
+function download(content, fileName, contentType) {
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+
+function exportData(e) {
+  var jsonData = JSON.stringify({
+    keys,
+    hello: keeper.encrypt("hello")
+  });
+
+  download(jsonData, 'authbit.json', 'text/plain');
+}
+
+function importData(e) {
+  importFile.click();
+}
+
+function importFileSelect() {
+  let fileReader = new FileReader();
+  fileReader.onload = function () {
+    let parsedJSON = JSON.parse(fileReader.result);
+
+    localStorage.setItem("isPwd", true);
+    localStorage.setItem("hello", parsedJSON.hello);
+
+    keys = parsedJSON.keys;
+    localStorage.setItem("keys", JSON.stringify(keys));
+  }
+
+  fileReader.readAsText(this.files[0]);
 }

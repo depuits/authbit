@@ -30,19 +30,27 @@ header {
 }
 #add,
 #close ,
-#log-out {
+#log-out,
+#export,
+#import {
   border: none;
   background: none;
   outline: none;
 }
 #add img,
 #close img,
-#log-out img {
+#log-out img,
+#export img,
+#import img {
   width: 22px;
   height: 22px;
 }
 #log-out {
   float: right;
+}
+#export,
+#import {
+  float: left;
 }
 button:hover {
   opacity: 0.6;
