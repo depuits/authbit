@@ -48,8 +48,8 @@ function authenticator(e) {
 }
 function processAuth(e) {
   password = document.getElementById("password").value;
-  if(password.length < 6){
-    sendMessage("Password must be at least 10 characters");
+  if(password.length < 4){
+    sendMessage("Password must be at least 4 characters");
     return;
   }
   keeper = new Blowfish(password);
