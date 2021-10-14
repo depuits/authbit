@@ -222,10 +222,11 @@ button:hover {
   justify-content: space-between;
 }
 .edit-btn,
-.remove-btn {
+.remove-btn,
+.copy-btn {
   height: 28px;
   width: 28px;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
   border: none;
   background-color: #fff;
   background-size: cover;
@@ -234,8 +235,10 @@ button:hover {
 }
 .key-item:hover .edit-btn,
 .key-item:hover .remove-btn,
+.key-item:hover .copy-btn,
 .key-item:active .edit-btn,
-.key-item:active .remove-btn {
+.key-item:active .remove-btn,
+.key-item:active .copy-btn {
   display: block;
 }
 .edit-btn {
@@ -243,6 +246,9 @@ button:hover {
 }
 .remove-btn {
   background-image: url("../img/remove.svg");
+}
+.copy-btn {
+  background-image: url("../img/copy.svg");
 }
 .display-block {
     display: block !important;

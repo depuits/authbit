@@ -223,8 +223,12 @@ function makeKeyItemElem(label, issuer, period) {
   let removeBtn = document.createElement("button");
   removeBtn.className = "remove-btn";
   removeBtn.addEventListener("click", removeItem);
+  let copyBtn = document.createElement("button");
+  copyBtn.className = "copy-btn";
+  copyBtn.addEventListener("click", copyItem);
   options.appendChild(editBtn);
   options.appendChild(removeBtn);
+  options.appendChild(copyBtn);
   keyItem.appendChild(heading);
   keyItem.appendChild(clearfix);
   keyItem.appendChild(codeItem);
@@ -254,6 +258,16 @@ function editItem(e) {
   submitBtn.removeEventListener("click", handleSubmit);
   submitBtn.id = id;
   submitBtn.addEventListener("click", updateData);
+}
+function copyItem(e) {
+  var code = e.target.parentNode.parentNode.getElementsByClassName("code")[0];
+
+  var input = document.createElement("input");
+  input.value = code.textContent;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand("copy");
+  document.body.removeChild(input); 
 }
 function updateData(e) {
   let id = submitBtn.id;
