@@ -16,4 +16,3 @@ I can't be sure it's 100 % safe, so **USE IT AT YOUR OWN RISK.**
 ## Credit
  - Thank to [Flaticon](https://flaticon.com) for their nice icons.
  - Inspire by [otp-authenticator-webapp](https://github.com/qoomon/otp-authentcator-webapp) by @qoomon
-
