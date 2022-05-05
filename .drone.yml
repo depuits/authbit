@@ -1,0 +1,25 @@
+---
+kind: pipeline
+type: docker
+name: default
+trigger:
+  branch:
+  - master
+  event:
+  - push
+
+steps:
+- name: deploy
+  image: drillster/drone-rsync
+  settings:
+    hosts:
+      from_secret: web_host
+    user:
+      from_secret: web_user
+    key:
+      from_secret: web_key
+    recursive: true
+    delete: true
+    source: ./
+    target: /www/authbit
+...
