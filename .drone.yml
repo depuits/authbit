@@ -22,4 +22,18 @@ steps:
     delete: true
     source: ./
     target: /www/authbit
+    
+- name: deploy
+  image: drillster/drone-rsync
+  settings:
+    hosts:
+      from_secret: web_host_extern
+    user:
+      from_secret: web_user
+    key:
+      from_secret: web_key
+    recursive: true
+    delete: true
+    source: ./
+    target: /www/authbit
 ...
