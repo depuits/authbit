@@ -9,7 +9,7 @@ trigger:
   - push
 
 steps:
-- name: deploy
+- name: deploy local
   image: drillster/drone-rsync
   settings:
     hosts:
@@ -23,7 +23,7 @@ steps:
     source: ./
     target: /www/authbit
     
-- name: deploy
+- name: deploy remote
   image: drillster/drone-rsync
   settings:
     hosts:
